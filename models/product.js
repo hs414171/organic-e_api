@@ -19,10 +19,9 @@ const Product = mongoose.Schema({
         type : Number,
         required : true
     },
-    prod_icon:{
-        data:Buffer,
-        required:true,
-        contentType:String
+    img:{
+        type : String,
+        required : true
     }
     
 

@@ -3,18 +3,17 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const { registerValidation , loginValidation } = require('../validation')
+const { registerValidation , loginValidation } = require('../validation/validation')
 const { valid } = require('@hapi/joi')
-const verify = require('./verifytoken')
-const { request } = require('express')
-const transportIt = require('../nodmailer')
 
 
 
 
 
-router.get('/get-users',verify, async (req,res)=>{
+
+
+
+router.get('/get-users', async (req,res)=>{
     try{
         const userData =  await User.find()
         res.json({userData})

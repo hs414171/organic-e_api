@@ -1,6 +1,7 @@
-const express = import('express')
+const express = require('express')
 const router = express.Router()
-const Cont = require('../models/contact')
+const Request = require('../models/contact')
+const { valid } = require('@hapi/joi')
 const { contactValidation } = require('../validation/contact_val')
 const nodemailer = require('nodemailer')
 const transportIt = require('../nodmailer')
@@ -52,3 +53,4 @@ router.post('/getDetails', async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 })
+module.exports = router

@@ -1,42 +1,43 @@
-const express = import('express')
+const express = require('express')
 const router = express.Router()
 const Prod = require('../models/product')
-router.get('/',(req,res)=>{
-    res.json("test route")
-})
-router.post('/add_product', async (req, res)=>{
-    const prod_name = req.body.prod_name
-    const product = await Prod.find()
-    let state = 0
-
-    
-    for(var ind in users){
-        if(prod_name === product[ind].prod_name){
-            res.status(414).json({message: 'this product already exists'})
-            state = 1
-            break
-        }
+const multer = require('multer');
+var fs = require('fs');
+var path = require('path');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => { 
+        cb(null,'./uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now()+'-'+file.originalname)
     }
+});
+ 
+const upload = multer({ storage: storage });
+ 
 
-    
-    if(state === 0){
-        const products = new Prod({
-            prod_name: req.body.prod_name,
-            prod_desc: req.body.prod_desc,
-            prod_price: req.body.prod_price
-    })   
-        try{
-            const newProduct = await products.save()
-            res.status(201).json({message: 'new product created', products:newProduct})
-            
-            
-            
-            
-        }catch(error){
-            res.status(400).json({message: error.message})
-        }
+
+
+
+
+
+
+router.post('/upload', upload.single('img'), (req, res, next) => {
+ 
+    var obj = {
+        prod_name: req.body.prod_name,
+        prod_desc: req.body.prod_desc,
+        prod_price : req.body.prod_price,
+        img: req.file.path
     }
-    
+    Prod.create(obj, (err, item) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.status(201).json({message: 'new product created'})
+        }
+    });
 });
 router.patch('/updateName',async (req,res)=>{
     const query = {prod_name:req.body.prod_name}
