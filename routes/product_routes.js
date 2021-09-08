@@ -1,27 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const Prod = require('../models/product')
-const multer = require('multer');
-var fs = require('fs');
-var path = require('path');
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => { 
-        cb(null,'./uploads/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now()+'-'+file.originalname)
-    }
-});
- 
-const upload = multer({ storage: storage });
- 
-
-
-
-
-
-
-
+const multer = require('multer')
+const upload = require('../middleware/middleware_multer')
+var fs = require('fs')
 router.post('/upload', upload.single('img'), (req, res, next) => {
  
     var obj = {
@@ -39,58 +21,13 @@ router.post('/upload', upload.single('img'), (req, res, next) => {
         }
     });
 });
-router.patch('/updateName',async (req,res)=>{
-    const query = {prod_name:req.body.prod_name}
-    
-    const update_doc = {
-        $set:{
-            "prod_name" : req.body.prod_name_ch,
-            
-        }
-    }
-    try{
-        const result = await User.findOneAndUpdate(query,update_doc,{useFindAndModify : false , new:true})
-        res.status(221).json({message:"Updated Succesfully",doc:result})
-    }
-    catch(e){
-        res.status(421).json({message : error.message})
-    }
-})
-router.patch('/updateDesc',async (req,res)=>{
-    const query = {prod_name:req.body.prod_name}
-    
-    const update_doc = {
-        $set:{
-            "prod_desc" : req.body.prod_desc,
-            
-        }
-    }
-    try{
-        const result = await User.findOneAndUpdate(query,update_doc,{useFindAndModify : false , new:true})
-        res.status(221).json({message:"Updated Succesfully",doc:result})
-    }
-    catch(e){
-        res.status(421).json({message : error.message})
-    }
-})
-router.patch('/updatePrice',async (req,res)=>{
-    const query = {prod_name:req.body.prod_name}
-    
-    const update_doc = {
-        $set:{
-            "prod_price" : req.body.prod_price,
-            
-        }
-    }
-    try{
-        const result = await User.findOneAndUpdate(query,update_doc,{useFindAndModify : false , new:true})
-        res.status(221).json({message:"Updated Succesfully",doc:result})
-    }
-    catch(e){
-        res.status(421).json({message : error.message})
-    }
-})
+
+
+
+
+
+
+
 
 
 module.exports = router
-
