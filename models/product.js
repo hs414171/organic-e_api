@@ -9,8 +9,6 @@ const Product = mongoose.Schema({
         type : String,
         required : true
     },
-    
-   
     prod_desc:{
         type : String,
         required :true
