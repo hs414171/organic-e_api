@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 const Request = require('../models/contact')
@@ -26,7 +27,6 @@ router.post('/getDetails', async (req, res) => {
         const options = {
             from: process.env.EMAIL_ADDRESS,
             to: process.env.EMAIL_RECIEVE,
-            subject: _subject,
             html: `
             <div>
                 <h1>Contact Form Details</h1>
