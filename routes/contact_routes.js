@@ -21,10 +21,10 @@ router.post('/getDetails', async (req, res) => {
         email: _email
         
     })
-    try {
+     try {
         const newRequest = await request.save()
         res.status(201).json({ message: 'new request created', user: newRequest })
-        const options = {
+        /* const options = {
             from: process.env.EMAIL_ADDRESS,
             to: _email,
             html: `
@@ -46,11 +46,11 @@ router.post('/getDetails', async (req, res) => {
             else{
                 console.log("Email Sent "+info.response)
             }
-        })
+        }) */
         
         
     } catch (error) {
         res.status(400).json({ message: error.message })
-    }
+    } 
 })
 module.exports = router
