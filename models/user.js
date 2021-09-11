@@ -14,18 +14,12 @@ const User = mongoose.Schema({
         required : true
     },
    
-    mobile:{
-        type : Number,
-        required :true
-    },
+    
     name:{
         type : String,
         required : true
-    },
-    email:{
-        type : String,
-        required : true
     }
+    
 
     
 })

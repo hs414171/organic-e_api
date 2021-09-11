@@ -15,9 +15,9 @@ const upload = multer({ storage: storage });
 router.get('/get-products', async (req,res)=>{
     try{
         const prodData =  await Prod.find()
-        res.status(500).json({prodData})
+        res.json({prodData})
     }catch(error){
-        res.status(500)
+        res.status(221)
     }
 })
 router.post('/upload', upload.single('img'), (req, res, next) => {

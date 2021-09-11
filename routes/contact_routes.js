@@ -26,7 +26,7 @@ router.post('/getDetails', async (req, res) => {
         res.status(201).json({ message: 'new request created', user: newRequest })
         const options = {
             from: process.env.EMAIL_ADDRESS,
-            to: process.env.EMAIL_RECIEVE,
+            to: _email,
             html: `
             <div>
                 <h1>Contact Form Details</h1>
