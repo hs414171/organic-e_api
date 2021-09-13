@@ -54,7 +54,40 @@ router.post('/upload', upload.single('img'), (req, res, next) => {
     
     
 });
-router.patch('/updateName/:id',upload.single('img'),async (req,res)=>{
+router.patch('/updateImage/:id', upload.single('img'), (req, res, next) => {
+    const id = req.params.id
+    const img = req.file.path
+
+    
+    async function rand1(img){
+    
+        const result = await uploadFile(filepath)
+        const url = await generateUrl(result)
+        const update_doc = {
+            $set:{
+                img
+            }
+        }
+        try{
+            const result = await Prod.findOneAndUpdate(id,update_doc,{useFindAndModify : false , new:true})
+            res.status(221).json({message:"Updated Succesfully",doc:result})
+        }
+        catch(e){
+            res.status(421).json({message : error.message})
+        }
+
+
+        
+
+        
+    }
+
+    rand1(img)
+    
+    
+    
+});
+router.patch('/updateName/:id',async (req,res)=>{
     const id = req.params.id
     const prod_name = req.body.prod_name
     
@@ -71,7 +104,7 @@ router.patch('/updateName/:id',upload.single('img'),async (req,res)=>{
         res.status(421).json({message : error.message})
     }
 })
-router.patch('/updatePrice/:id',upload.single('img'),async (req,res)=>{
+router.patch('/updatePrice/:id',async (req,res)=>{
     const id = req.params.id
     const prod_price = req.body.prod_price
     
@@ -88,7 +121,7 @@ router.patch('/updatePrice/:id',upload.single('img'),async (req,res)=>{
         res.status(421).json({message : error.message})
     }
 })
-router.patch('/updateDesc/:id',upload.single('img'),async (req,res)=>{
+router.patch('/updateDesc/:id',async (req,res)=>{
     const id = req.params.id
     const prod_desc = req.body.prod_desc
     
