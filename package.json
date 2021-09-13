@@ -26,6 +26,7 @@
     "multer-gridfs-storage": "^5.0.1",
     "multer-s3": "^2.9.0",
     "nodemailer": "^6.6.3",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "is-svg": ">=4.2.2"
   }
 }
