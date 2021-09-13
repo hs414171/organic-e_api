@@ -10,9 +10,9 @@ const transportIt = require('../nodmailer')
 router.post('/getDetails', async (req, res) => {
     const { error } = contactValidation(req.body)
     if (error) return res.status(400).send(error.details[0].message)
-    const _message = req.body.message
-    const _name = req.body.name
-    const _email = req.body.email
+    const _message = req.body.c_message
+    const _name = req.body.c_name
+    const _email = req.body.c_email
 
     
     const request = new Request({
