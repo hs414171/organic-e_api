@@ -56,7 +56,7 @@ router.post('/upload', upload.single('img'), (req, res, next) => {
     
     
 });
-router.patch('/updateImage/:id', upload.single('img'), (req, res, next) => {
+/* router.patch('/updateImage/:id', upload.single('img'), (req, res, next) => {
     const id = req.params.id
     const filePath = req.file.path
     
@@ -91,7 +91,7 @@ router.patch('/updateImage/:id', upload.single('img'), (req, res, next) => {
     
     
     
-});
+}); */
 router.patch('/updateName/:id',async (req,res)=>{
     const id = req.params.id
     const prod_name = req.body.prod_name
