@@ -28,7 +28,9 @@ router.post('/upload', upload.single('img'), (req, res, next) => {
     async function rand1(filepath){
     
         const result = await uploadFile(filepath)
-        const url = await generateUrl(result)
+        console.log(result)
+        const url = "https://drive.google.com/uc?id="+result.toString()
+
         var obj = {
             prod_name: req.body.prod_name,
             prod_desc: req.body.prod_desc,
