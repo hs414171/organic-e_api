@@ -56,13 +56,13 @@ router.post('/upload', upload.single('img'), (req, res, next) => {
     
     
 });
-/* router.patch('/updateImage/:id', upload.single('img'), (req, res, next) => {
+router.patch('/updateImage/:id', upload.single('img'), (req, res, next) => {
     const id = req.params.id
     const filePath = req.file.path
     
 
     
-    async function rand1(img){
+    async function rand1(filepath){
     
         const result = await uploadFile(filepath)
         const img = "https://drive.google.com/uc?id="+result.toString()
@@ -91,7 +91,7 @@ router.post('/upload', upload.single('img'), (req, res, next) => {
     
     
     
-}); */
+});
 router.patch('/updateName/:id',async (req,res)=>{
     const id = req.params.id
     const prod_name = req.body.prod_name
