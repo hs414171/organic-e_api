@@ -36,6 +36,17 @@ app.use('/api/user',user_routes)
 app.use('/api/product',prod_routes)
 app.use('/api/contact',contact_routes)
 app.use('/uploads',express.static('uploads'));
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    if ('OPTIONS' == req.method) {
+        return res.sendStatus(200);
+    } else {
+        next();
+    }
+});
 app.set("view engine", "ejs");
 
 
