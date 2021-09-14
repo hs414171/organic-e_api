@@ -10,7 +10,7 @@ const Prod = require('./models/product')
 const cors = require('cors')
 const port = process.env.PORT || 8000
 const app = express()
-var options = {
+/* var options = {
     "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "Access-Control-Allow-Origin": '*',
@@ -19,8 +19,8 @@ var options = {
     'Access-Control-Allow-Credentials': true,
     "preflightContinue": false,
     "optionsSuccessStatus": 204
-  }
-app.use(cors(options));
+  } */
+app.use(cors());
 
 
 
